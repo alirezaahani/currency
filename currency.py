@@ -9,8 +9,10 @@ def currency():
     try:
         get = requests.get(url)
         currency_json = get.json()
-        currency_usd = currency_json['sana_buy_usd']['p']
-        return(currency_usd)
+        currency = ""
+        for key,item in currency_json.items():
+            currency += str(item['title']) + ":" + str(item['p']) + "\n"
+        return(currency)
     except:
         return False
 
@@ -25,7 +27,7 @@ class App(QtWidgets.QMainWindow,ui.Ui_MainWindow):
         if not re:
             self.output.setText("لطفا اینترنت خود را چک کنید")
         else:
-            self.output.setText("دلار در حال حاضر {0} ریال است".format(re))
+            self.output.setText(re)
 def main():
     mainApp = QApplication(['دلار ایران'])
     mainWindow = App()
