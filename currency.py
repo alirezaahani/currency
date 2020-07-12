@@ -29,7 +29,7 @@ class App(QtWidgets.QMainWindow,ui.Ui_MainWindow):
         else:
             self.output.setText(re)
 def main():
-    mainApp = QApplication(['دلار ایران'])
+    mainApp = QApplication(['ارز ایران'])
     mainWindow = App()
     mainWindow.show()
     mainApp.exec_()

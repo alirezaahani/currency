@@ -35,5 +35,5 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "دلار ایران"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "ارز ایران"))
         self.update.setText(_translate("MainWindow", "بروزرسانی"))
