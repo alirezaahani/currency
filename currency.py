@@ -1,6 +1,7 @@
 from PyQt5 import QtCore,QtGui,QtWidgets
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtGui import QFontDatabase, QFont
 import requests,ui
 
 url = "https://api.tgju.online/v1/data/sana/json"
@@ -12,7 +13,7 @@ def currency():
         currency = ""
         for key,item in currency_json.items():
             currency += str(item['title']) + ":" + str(item['p']) + "\n"
-        return(currency)
+        return(currency.replace('سامانه سنا', '(سامانه سنا)'))
     except:
         return False
 
@@ -20,6 +21,8 @@ class App(QtWidgets.QMainWindow,ui.Ui_MainWindow):
     def __init__(self,parent=None):
         super(App,self).__init__(parent)
         self.setupUi(self)
+        self.setStyleSheet('font-size: 15px;')
+
     @pyqtSlot()
     def button_pressed(self):
         re = currency()
@@ -30,6 +33,11 @@ class App(QtWidgets.QMainWindow,ui.Ui_MainWindow):
             self.output.setText(re)
 def main():
     mainApp = QApplication(['ارز ایران'])
+
+    fontdata = QFontDatabase()
+    vazirfont = fontdata.addApplicationFont('Vazir.ttf')
+    mainApp.setFont(QFont('Vazir'))
+
     mainWindow = App()
     mainWindow.show()
     mainApp.exec_()
